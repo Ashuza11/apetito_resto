@@ -1,0 +1,135 @@
+/* Main Styles  */
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none; border:none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+body {
+    /* margin: 0;
+    padding: 0; */
+    background-color: #2F3035;
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("../img/img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1024px;
+}
+/* Main Styles  End */
+
+/* Structure style  */
+
+header {
+    /* background-color: rgb(255, 255, 255); */
+    height: 118px;
+    text-align: center; 
+}
+header .logo {
+    height: 150px;
+    width: 200px;
+    margin-top: 20px;
+}
+
+
+nav {
+    background-color:rgba(0, 0, 0, 0.397);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    text-align: center;
+    margin-top: 40px;
+    
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+
+
+main {
+    height: 450px;
+    text-align: center;
+    padding-top: 80px;
+    padding-left: 240px;
+    padding-right: 240px;
+  
+}
+h1 {
+    font-size: 84px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+     
+} 
+
+p {
+    color: white;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6em;
+} 
+ 
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color:#fff;
+    background: black;
+    border-radius: .5rem;
+    cursor: pointer;
+    padding:.8rem 3rem;
+}
+
+/* Map section */
+
+
+/* Map section  End */
+footer {
+    background-color:rgba(0, 0, 0, 0.705);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* height: 100px;   */
+}
+footer p {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+/* Structure style  End */
+
+
+
+
+
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+}
