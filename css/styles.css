@@ -75,6 +75,7 @@ main {
     padding-right: 240px;
   
 }
+
 h1 {
     font-size: 84px;
     color: white;
@@ -82,11 +83,11 @@ h1 {
      
 } 
 
-p {
+main p {
     color: white;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6em;
+    font-size: 19px;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    line-height: 1.8em;
 } 
  
 a {

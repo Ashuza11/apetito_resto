@@ -18,26 +18,26 @@
 
     # Ne fonctione pas encore 
     if (emptyInputSignup($name,  $userUid, $email, $pwd, $pwdRepeat) !== false) {
-        header("location: ../index.php?error=emptyinput");
+        header("location: ../register.php?error=emptyinput");
         exit();
     }
-    // if (invalidUsername($userUid) !== false) {
-    //     header("location: ../index.php?error=invaliduid");
-    //     exit();
-    // }
-    // if (invalidEmail($email) !== false) {
-    //     header("location: ../index.php?error=invalidemail");
-    //     exit();
-    // }
+    if (invalidUsername($userUid) !== false) {
+        header("location: ../register.php?error=invaliduid");
+        exit();
+    }
+    if (invalidEmail($email) !== false) {
+        header("location: ../register.php?error=invalidemail");
+        exit();
+    }
     
     # Fonctione pour le moment
     if (PwdMatch($pwd, $pwdRepeat) !== false) {
-        header("location: ../index.php?error=passworddontmatch");
+        header("location: ../register.php?error=passworddontmatch");
         exit();
     }
     # Verifier si le nom existe dans la base des données
-    if (uidExists($conn, $name, $email) !== false) {
-        header("location: ../index.php?error=ussenametaken");
+    if (uidExists($conn, $userUid, $email) !== false) {
+        header("location: ../register.php?error=ussenametaken");
         exit();
     }
 
@@ -45,6 +45,6 @@
     Createuser($conn, $name,  $userUid,  $email, $pwd);
  }
  else {
-    header("location: ../index.php");
+    header("location: ../register.php");
     exit();
  }

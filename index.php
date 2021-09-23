@@ -14,7 +14,7 @@
 			if ($_GET["error"] == "emptyinput"){
 				echo '<p style="color: red; padding: 10px 15px; font-weight: bold; text-align: center; font-size: 20px;" >Viellez remplir tous les champs !</p>';
 			}
-			else if ($_GET["error"] == "invaliduid") {
+			else if ($_GET["error"] == "Mauvaisidentifiant") {
 				echo "<p style='color: red; padding: 10px 15px; font-weight: bold; text-align: center; font-size: 20px;'>Informations incorrect !</p>";
 			}
 		}
@@ -23,10 +23,10 @@
 		<form action="php/login.php" method="POST" class="login-email">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Connexion</p>
 			<div class="input-group">
-				<input type="text" placeholder="Non d'utilisateur/Email" name="uid" value="" required>
+				<input type="text" placeholder="Non d'utilisateur/Email" name="userUid" value="" required>
 			</div>
 			<div class="input-group">
-				<input type="password" placeholder="mot de pass" name="pwd" value="" required>
+				<input type="password" placeholder="mot de pass" name="userPwd" value="" required>
 			</div>
 			<div class="input-group">
 				<button name="submit" type="submit" class="btn">Connexion</button>

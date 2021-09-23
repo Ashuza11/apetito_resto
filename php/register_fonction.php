@@ -11,29 +11,29 @@ function emptyInputSignup($name,  $userUid, $email, $pwd, $pwdRepeat) {
     return $result;
 
 }
-// function invalidUsername($userUid) {
-//     $result;
-//     # User of the search algorithm
-//     if (preg_match("/^[a-zA-Z0-9]*$/", $userUid)){
-//         $result = true;
-//     }
-//     else {
-//         $result = false;
-//     }
-//     return $result;
+function invalidUsername($userUid) {
+    $result;
+    # User of the search algorithm
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $userUid)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
 
-// }
-// function invalidEmail($userUid) {
-//     $result;
-//     if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-//         $result = true;
-//     }
-//     else {
-//         $result = false;
-//     }
-//     return $result;
+}
+function invalidEmail($email) {
+    $result;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
 
-// }
+}
 # Passwoed checker 
 function PwdMatch($pwd, $pwdRepeat) {
     $result;
@@ -48,22 +48,23 @@ function PwdMatch($pwd, $pwdRepeat) {
 }
 # Cheker si l'utilisateur existe déjà dans la base. 
 # Ussed for the sign up for and for the login form 
-function uidExists($conn, $userUid, $email) {
+function uidExists($conn, $userUid, $email ) {
     $sql = "SELECT * FROM users WHERE userUid = ? OR email = ?;"; # Close of sql statmnt and php statmnt
     # unitialise a new statemment/ prevenir l'utilisateur de questionner la base via le fomulaire 
     $stmt = mysqli_stmt_init($conn); # stmt statement to execuite
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../register.php?error=ussenametaken");
+        header("location: ../register.php?error=stmtfailed");
         exit();
     }
-    # if everything is ok 
-    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    # if everything is ok / Pass data for user
+    mysqli_stmt_bind_param($stmt, "ss", $userUid, $email);
     mysqli_stmt_execute($stmt);
 
-    # Grabe thr data 
+    # Grabe the data  from the data base
     $resultData = mysqli_stmt_get_result($stmt);
 
     # Faching the data as an associative array
+    # Grab the data with username
     if ($row = mysqli_fetch_assoc($resultData)){
         return $row; # return all the data if the user exist inthe data base 
     }
@@ -71,6 +72,7 @@ function uidExists($conn, $userUid, $email) {
         $resalt = false;
         return $resalt;
     }
+
     mysqli_stmt_close($stmt);
 }
 
@@ -78,8 +80,9 @@ function uidExists($conn, $userUid, $email) {
 function Createuser($conn, $name,  $userUid,  $email, $pwd){
     $sql = "INSERT INTO users (userName, userUid, email, userPwd) VALUES (?, ?, ?, ?);"; # Close 
     $stmt = mysqli_stmt_init($conn); # Initialise an new prepared statement
+    # Check if it doesn't fail
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../register.php?error=ussenametaken");
+        header("location: ../register.php?error=usenametaken");
         exit();
     }
     # Hashing the Password to make it unreaderble using built in fuction password_hash
@@ -95,6 +98,7 @@ function Createuser($conn, $name,  $userUid,  $email, $pwd){
     header("location: ../index1.php?error=none");
     exit();
 }
+# Login Section 
 
 # Check imptyinput  For  login 
 function emptyInputLogin($userUid, $pwd) {
@@ -113,7 +117,7 @@ function loginUser($conn, $userUid, $pwd) {
     $uidExixts = uidExists($conn, $userUid, $userUid);
 
     if ($uidExixts ===  false){
-        header("location: ../index.php?error=Mauvais identifiant");
+        header("location: ../index.php?error=Mauvaisidentifiant");
         exit();
     }
 
@@ -122,15 +126,16 @@ function loginUser($conn, $userUid, $pwd) {
     $checkPwd = password_verify($pwd, $pwdHashed);
 
     if ($checkPwd === false) {
-        header("location: ../index.php?error=Mauvais identifiant");
+        header("location: ../index.php?error=MauvaisIdentifiant");
         exit();
     }
     else if ($checkPwd === true)
-    # Usage of sessions using a session fuction built in php
-    session_start();
-    $_SESSION["userid"] = $uidExixts["id"];
-    $_SESSION["userUid"] = $uidExixts["userUid"];
-    header("location: ../index.html");
-    exit();
-
+    {
+        # Usage of sessions using a session fuction built in php
+        session_start();
+        $_SESSION["userid"] = $uidExixts["id"];
+        $_SESSION["useruid"] = $uidExixts["userUid"];
+        header("location: ../index1.php");
+        exit();
+    }
 }
