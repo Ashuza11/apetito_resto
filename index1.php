@@ -20,14 +20,14 @@
             </header>
 
             <nav>
-                <a href="index.html">HOME</a>
+                <a href="index1.php">HOME</a>
                 <a href="food.html" target="blink">MENU</a>
                 <a href="#" target="blink">A PROPOS</a>
                 <a href="#">COMMANDER</a>
                 <a href="#">CONTACT</a>
                 <?php
                     if (isset($_SESSION["useruid"])) {
-                        echo " <a href='index.php'>DECONNECTION</a>";
+                        echo " <a href='php/logout.php'>DECONNECTION</a>";
                     }
                 ?>
             </nav>

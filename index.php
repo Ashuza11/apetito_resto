@@ -1,3 +1,7 @@
+<?php
+    session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +13,12 @@
 </head>
 <body>
 	<div class="container">
+	<?php
+		# Session / user logedout 
+		if (isset($_SESSION["useruid"])) {
+			echo"<p style='color: red; padding: 10px 15px; font-weight: bold; text-align: center; font-size: 20px'; >Bonjour ".$_SESSION["useruid"]."</p>";
+		}	
+	?>
 	<?php
 		if (isset($_GET["error"])){
 			if ($_GET["error"] == "emptyinput"){
