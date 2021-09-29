@@ -1,4 +1,4 @@
-# APETITO RESTORENT
+![Markdown Logo](img/Apetito_Resto.png)
 
 
 <!-- Images -->
